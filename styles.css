@@ -341,3 +341,5 @@ html,body{background:var(--bg)}
 /* Antonovych: логотип на обложке, подпись под парой */
 .logo-mark{width:clamp(260px,26vw,420px)}
 .photo-label{bottom:1.6vh}
+.text-inner{max-width:min(92vw,1700px)}
+.text-slide .title{max-width:none}

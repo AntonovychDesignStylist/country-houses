@@ -1,19 +1,14 @@
-/* Загородные дома — Antonovych Design. Только заголовки и кадры. */
+/* Antonovych Design — проектное предложение. Только заголовки и кадры. */
 window.SLIDES = [
  {
   "type": "text",
   "logo": true,
-  "title": "Загородные дома",
-  "sub": "Планировочные решения · концепции · визуализации"
+  "title": "Архитектура и интерьер",
+  "sub": "Проектное предложение · 2026"
  },
  {
   "type": "text",
-  "title": "Дом 1",
-  "sub": "Планировочное решение · визуализации"
- },
- {
-  "type": "photo",
-  "src": "media/img/d1_genplan.webp"
+  "title": "Астана · Асель Нурлан · Депутатский"
  },
  {
   "type": "pair",
@@ -22,6 +17,19 @@ window.SLIDES = [
    "media/img/d1_plan2.webp"
   ],
   "label": "Схема расстановки мебели · 1 и 2 этаж"
+ },
+ {
+  "type": "text",
+  "title": "Примеры наших работ",
+  "sub": "Концепция архитектуры дома"
+ },
+ {
+  "type": "text",
+  "title": "1. Эко-интегрированная архитектура"
+ },
+ {
+  "type": "photo",
+  "src": "media/img/d1_genplan.webp"
  },
  {
   "type": "photo",
@@ -41,8 +49,7 @@ window.SLIDES = [
  },
  {
   "type": "text",
-  "title": "Дом 2",
-  "sub": "Объёмно-планировочное решение · интерьер"
+  "title": "2. Супрематизм — точка и линия в пространстве"
  },
  {
   "type": "photo",
@@ -118,8 +125,7 @@ window.SLIDES = [
  },
  {
   "type": "text",
-  "title": "Дом 3",
-  "sub": "Farmhouse Astana · дизайн-концепция"
+  "title": "3. Farmhouse"
  },
  {
   "type": "photo",
