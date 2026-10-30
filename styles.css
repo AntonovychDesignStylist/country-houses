@@ -337,3 +337,9 @@ html,body{background:var(--bg)}
 /* заголовки разделов — мельче, тоньше, в одну строку */
 .text-slide .title{font-weight:300;font-size:clamp(14px,1.45vw,28px);letter-spacing:.32em;text-indent:.32em;white-space:nowrap}
 .cover-min .title{font-size:clamp(12px,1vw,17px);font-weight:400}
+
+/* кнопка музыки: выключена по умолчанию, в виде подписи «♪ Музыка» */
+#sound-toggle.off{opacity:.7;text-decoration:none;width:auto;padding:0 14px;border-radius:16px;
+  font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--white)}
+#sound-toggle.off:hover{opacity:1}
+#sound-toggle{bottom:46px}

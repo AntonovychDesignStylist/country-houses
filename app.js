@@ -182,7 +182,7 @@
   music.volume = 0;
   document.body.appendChild(music);
 
-  var soundOn = true, audioReady = false, fadeTimer = null;
+  var soundOn = false, audioReady = false, fadeTimer = null;   // по умолчанию без музыки
 
   function fadeTo(target, ms, done) {
     clearInterval(fadeTimer);
@@ -212,7 +212,7 @@
   ['click', 'keydown', 'touchstart', 'wheel'].forEach(function (ev) {
     window.addEventListener(ev, startAudio, { once: true, passive: true });
   });
-  music.play().then(function () { audioReady = true; fadeTo(MUSIC_VOL, 900); })
+  if (soundOn) music.play().then(function () { audioReady = true; fadeTo(MUSIC_VOL, 900); })
               .catch(function () {});
 
   /* ── переходы ───────────────────────────────────────────────────── */
@@ -245,12 +245,15 @@
   var sndBtn = document.createElement('button');
   sndBtn.id = 'sound-toggle';
   sndBtn.type = 'button';
-  sndBtn.textContent = '♪';
-  sndBtn.title = 'Звук';
+  sndBtn.textContent = '♪ Музыка';
+  sndBtn.title = 'Включить музыку';
+  sndBtn.classList.add('off');
   sndBtn.addEventListener('click', function (e) {
     e.stopPropagation();
     soundOn = !soundOn;
     sndBtn.classList.toggle('off', !soundOn);
+    sndBtn.textContent = soundOn ? '♪' : '♪ Музыка';
+    sndBtn.title = soundOn ? 'Выключить музыку' : 'Включить музыку';
     audioReady = true;
     var v = slides[cur] && slides[cur].querySelector('video');
     if (!soundOn) {
