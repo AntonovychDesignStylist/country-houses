@@ -174,7 +174,7 @@
      звуковой дорожкой музыка уходит, слышно сам ролик; дальше музыка
      возвращается. Браузер разрешает звук только после первого действия
      пользователя, поэтому музыка стартует с первого клика или клавиши. */
-  var MUSIC_VOL = 0.32;
+  var MUSIC_VOL = 0.16;
   var music = document.createElement('audio');
   music.src = 'media/audio/background.mp3';
   music.loop = true;
