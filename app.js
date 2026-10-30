@@ -389,7 +389,9 @@
   var el = document.documentElement;
   var req = el.requestFullscreen || el.webkitRequestFullscreen;
   if (!req) return;
+  var TOUCH = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
   function goFull(e) {
+    if (TOUCH) return;
     if (e.type === 'keydown' && (e.key === 'Escape' || e.key === 'f' || e.key === 'F')) return;
     if (document.fullscreenElement || document.webkitFullscreenElement) return;
     try { var p = req.call(el); if (p && p.catch) p.catch(function () {}); } catch (err) {}
@@ -399,42 +401,35 @@
   });
 })();
 
-/* Телефон: заставка «коснитесь — на весь экран». Android — полный экран и горизонталь,
-   iPhone (Safari не даёт сайту полный экран) — короткая подсказка «На экран Домой». */
+/* Телефон и планшет: двойное касание — полный экран (как F на компьютере).
+   Одиночное касание листает, но с паузой, чтобы отличить его от двойного. */
 (function () {
-  var touch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
-  var small = Math.min(screen.width, screen.height) < 900;
-  var standalone = window.matchMedia('(display-mode: fullscreen)').matches ||
-                   window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
-  if (!touch || !small || standalone) return;
+  if (!(('ontouchstart' in window) || navigator.maxTouchPoints > 0)) return;
   var el = document.documentElement;
-  var req = el.requestFullscreen || el.webkitRequestFullscreen;
-  var ios = !req || /iPhone|iPod/.test(navigator.userAgent);
-  var ov = document.createElement('div');
-  ov.id = 'fs-gate';
-  ov.innerHTML = ios
-    ? '<div class="fs-in"><div class="fs-t">Как открыть на весь экран</div>' +
-      '<ol class="fs-steps">' +
-      '<li>Нажмите в Safari значок «Поделиться» <svg class="fs-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7.5 7.5 12 3l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 10H6v10h12V10h-2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></li>' +
-      '<li>Выберите «На экран „Домой“» и нажмите «Добавить»</li>' +
-      '<li>Откройте презентацию с нового значка на экране телефона</li>' +
-      '</ol><div class="fs-b">Смотреть сейчас</div></div>'
-    : '<div class="fs-in"><div class="fs-t">Нажмите в любом месте</div>' +
-      '<div class="fs-s">презентация откроется на весь экран</div></div>';
-  document.body.appendChild(ov);
-  function go(e) {
-    e.preventDefault(); e.stopPropagation();
-    if (!ios) {
-      try {
-        var p = req.call(el, { navigationUI: 'hide' });
-        if (p && p.then) p.then(function () {
-          try { screen.orientation.lock('landscape').catch(function () {}); } catch (x) {}
-        }).catch(function () {});
-      } catch (x) {}
-    }
-    ov.remove();
+  var timer = null, pending = null;
+  function toggle() {
+    var on = document.fullscreenElement || document.webkitFullscreenElement;
+    try {
+      if (on) { (document.exitFullscreen || document.webkitExitFullscreen).call(document); return; }
+      var req = el.requestFullscreen || el.webkitRequestFullscreen;
+      if (!req) return;
+      var p = req.call(el, { navigationUI: 'hide' });
+      if (p && p.then) p.then(function () {
+        try { screen.orientation.lock('landscape').catch(function () {}); } catch (x) {}
+      }).catch(function () {});
+    } catch (x) {}
   }
-  var target = ios ? ov.querySelector('.fs-b') : ov;
-  target.addEventListener('click', go, true);
-  target.addEventListener('touchend', go, true);
+  document.addEventListener('click', function (e) {
+    if (e.__replay) return;
+    if (!e.target.closest || !e.target.closest('#stage') || e.target.closest('#sound-toggle')) return;
+    e.stopPropagation(); e.preventDefault();
+    if (timer) { clearTimeout(timer); timer = null; pending = null; toggle(); return; }
+    pending = { x: e.clientX, y: e.clientY, t: e.target };
+    timer = setTimeout(function () {
+      timer = null;
+      if (!pending) return;
+      var ev = new MouseEvent('click', { bubbles: true, cancelable: true, clientX: pending.x, clientY: pending.y });
+      ev.__replay = true; pending.t.dispatchEvent(ev); pending = null;
+    }, 280);
+  }, true);
 })();
