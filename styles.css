@@ -266,49 +266,7 @@ body{font-family:var(--sans);-webkit-font-smoothing:antialiased}
   .subs-side .subs,.subs-side .subs.on{transform:translateY(-50%)}
 }
 
-/* Flexform: словесный знак вместо картинки-логотипа */
-.logo-word{display:inline-block;font-family:var(--sans);font-weight:500;letter-spacing:.42em;text-indent:.42em;
-  color:var(--white);font-size:clamp(30px,4.2vw,64px);line-height:1}
-.cover .wordmark .logo-word{font-size:clamp(22px,2.4vw,36px)}
-
-
-/* ─── Flexform: стиль каталога и сайта — светлый лист, тонкие засечки, воздух ─── */
-@font-face{font-family:'Cormorant';src:url('media/fonts/CormorantGaramond-300.woff') format('woff');font-weight:300;font-display:swap}
-@font-face{font-family:'Cormorant';src:url('media/fonts/CormorantGaramond-400.woff') format('woff');font-weight:400;font-display:swap}
-@font-face{font-family:'Cormorant';src:url('media/fonts/CormorantGaramond-500.woff') format('woff');font-weight:500;font-display:swap}
-:root{
-  --bg:#FAFAFA; --bg2:#F1EEEA;
-  --white:#3A322C;          /* заголовки — тёмный тёплый коричневый */
-  --grey:#8A8079; --grey-dim:#B3ABA4;
-  --hair:rgba(58,50,44,.18);
-  --serif:'Cormorant','Cormorant Garamond',Georgia,'Times New Roman',serif;
-}
-html,body{background:var(--bg)}
-.frame{inset:0}                                  /* кадр на весь экран 16:9 */
-.frame.pair{padding:clamp(20px,3vh,40px) clamp(20px,2vw,40px);gap:clamp(14px,1.6vw,30px)}
-.frame.pair img{width:50%;height:100%;object-fit:contain}
-.frame video{background:var(--bg)}
-
-.text-slide .title{font-family:var(--serif);font-weight:400;text-transform:none;
-  letter-spacing:.01em;text-indent:0;line-height:1.1;color:var(--white);
-  font-size:clamp(34px,4.4vw,72px)}
-.text-slide .sub{font-family:var(--sans);font-weight:300;text-transform:uppercase;
-  letter-spacing:.22em;text-indent:.22em;color:var(--grey);font-size:clamp(9px,.7vw,11px);margin-top:2.6em}
-.text-slide .rule{display:none}
-.logo-mark{width:clamp(220px,22vw,340px);height:auto;display:block}
-.wordmark-text{margin-bottom:clamp(36px,6vh,70px)}
-.text-slide .wordmark-text + .title{font-size:clamp(26px,2.8vw,44px);font-weight:300}
-
-#sound-toggle{border-color:rgba(58,50,44,.3);background:rgba(250,250,250,.8);color:var(--white)}
-#progress{background:rgba(58,50,44,.08)}
-#bar{background:rgba(58,50,44,.45)}
-#grid figure:hover{outline:1px solid rgba(58,50,44,.4)}
-#grid .g-text{color:var(--white);font-family:var(--serif);text-transform:none;letter-spacing:0;font-size:15px}
-#grid .g-text .logo-mark{width:60%;margin:0 auto}
-.subs-ru{color:var(--white)}
-
-
-/* ─── Фото на белом листе: кадр по центру ~64% высоты экрана, поля со всех сторон ─── */
+/* ─── Кадры по центру с полями со всех сторон ─── */
 .frame.photo{inset:6vh 6vw;padding:0}
 .frame.photo.pair{inset:6vh 5vw;padding:0;gap:clamp(16px,2vw,40px)}
 .frame.photo.small{inset:24vh 24vw}            /* файлы с малым разрешением — ещё меньше */
@@ -318,13 +276,13 @@ html,body{background:var(--bg)}
   .frame.photo.pair{inset:14vh 5vw}
 }
 
-/* текстовый слайд с короткими строками (Библиотека материалов) — мелкий шрифт на белом */
+/* текстовый слайд с короткими строками */
 .text-slide .kicker{font-family:var(--sans);font-weight:300;text-transform:uppercase;letter-spacing:.24em;text-indent:.24em;color:var(--grey);font-size:clamp(10px,.75vw,13px);margin-bottom:2.2em}
 .text-slide .lines{margin-top:clamp(36px,6vh,64px);display:flex;flex-direction:column;gap:.9em}
 .text-slide .lines span{font-family:var(--sans);font-weight:300;color:var(--white);font-size:clamp(14px,1.05vw,19px);letter-spacing:.01em;line-height:1.5}
 .frame.photo.pair img{width:auto;height:100%;max-width:calc(50% - 1vw);object-fit:contain}
 
-/* ─── Видео: белые поля вокруг кадра, чтобы было видно, что кадр целиком в экране ─── */
+/* ─── Видео: поля вокруг кадра, чтобы было видно, что кадр целиком в экране ─── */
 .frame.vid{inset:6vh 6vw}
 .frame.vid.vid-portrait{inset:5vh 6vw}
 .frame.vid video{background:transparent}
@@ -338,8 +296,24 @@ html,body{background:var(--bg)}
 /* ролик с переводом: поля вокруг кадра и место под титры снизу */
 .subs-below .frame.vid{inset:5vh 10vw clamp(120px,18vh,175px) 10vw}
 
-/* Antonovych: логотип на обложке, подпись под парой */
-.logo-mark{width:clamp(260px,26vw,420px)}
 .photo-label{bottom:1.6vh}
 .text-inner{max-width:min(92vw,1700px)}
 .text-slide .title{max-width:none}
+
+/* ─── Antonovych Design: тёмная стилистика презентаций, Gilroy, новый логотип ─── */
+.frame video{background:var(--bg)}
+.logo-svg{display:block;color:var(--white);width:clamp(300px,30vw,520px);height:auto}
+.logo-svg svg{display:block;width:100%;height:auto}
+.text-slide .title{max-width:none;text-wrap:balance}
+.text-slide .rule{display:none}
+.text-slide .sub{margin-top:2.2em}
+/* обложка: логотип ровно по центру экрана, подпись спущена вниз */
+.text-slide.cover-min{padding:0}
+.cover-min .text-inner{position:absolute;inset:0;max-width:none;display:grid;grid-template-rows:1fr auto 1fr;justify-items:center}
+.cover-min .wordmark-text{grid-row:2;margin:0}
+.cover-min .cover-text{grid-row:3;align-self:end;padding-bottom:clamp(48px,11vh,120px);display:flex;flex-direction:column;align-items:center}
+.cover-min .title{font-size:clamp(13px,1.05vw,18px);font-weight:400;letter-spacing:.42em;text-indent:.42em}
+.cover-min .sub{margin-top:1.4em}
+/* финал: только логотип */
+.logo-only .logo-svg{width:clamp(220px,20vw,340px)}
+#grid .g-text .logo-svg{width:70%;margin:0 auto}
