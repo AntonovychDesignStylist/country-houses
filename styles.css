@@ -334,3 +334,6 @@ html,body{background:var(--bg)}
 #bar{background:rgba(25,23,22,.45)}
 #grid figure:hover{outline:1px solid rgba(25,23,22,.4)}
 .subs-ru{color:var(--white)}
+/* заголовки разделов — мельче, тоньше, в одну строку */
+.text-slide .title{font-weight:300;font-size:clamp(14px,1.45vw,28px);letter-spacing:.32em;text-indent:.32em;white-space:nowrap}
+.cover-min .title{font-size:clamp(12px,1vw,17px);font-weight:400}
