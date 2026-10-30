@@ -6,20 +6,20 @@ window.SLIDES = [
   "title": "Астана · Асель Нурлан · Депутатский"
  },
  {
-  "type": "pair",
-  "src": [
-   "media/img/d1_plan1.webp?g=1",
-   "media/img/d1_plan2.webp?g=1"
-  ],
-  "label": "Схема расстановки мебели · 1 и 2 этаж"
- },
- {
   "type": "text",
   "title": "Примеры концепций архитектурных решений"
  },
  {
   "type": "text",
   "title": "1. Эко-интегрированная архитектура"
+ },
+ {
+  "type": "pair",
+  "src": [
+   "media/img/d1_plan1.webp?g=1",
+   "media/img/d1_plan2.webp?g=1"
+  ],
+  "label": "Схема расстановки мебели · 1 и 2 этаж"
  },
  {
   "type": "photo",
