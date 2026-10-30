@@ -23,7 +23,7 @@ window.SLIDES = [
  },
  {
   "type": "photo",
-  "src": "media/img/d1_genplan.webp?g=1"
+  "src": "media/img/d1_genplan.webp?g=2"
  },
  {
   "type": "photo",
@@ -147,15 +147,15 @@ window.SLIDES = [
  },
  {
   "type": "photo",
-  "src": "media/img/d3_p7.webp?g=1"
+  "src": "media/img/d3_p7.webp?g=2"
  },
  {
   "type": "photo",
-  "src": "media/img/d3_p8.webp?g=1"
+  "src": "media/img/d3_p8.webp?g=2"
  },
  {
   "type": "photo",
-  "src": "media/img/d3_p9.webp?g=1"
+  "src": "media/img/d3_p9.webp?g=2"
  },
  {
   "type": "text",
