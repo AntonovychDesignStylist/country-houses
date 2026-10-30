@@ -413,11 +413,14 @@
   var ov = document.createElement('div');
   ov.id = 'fs-gate';
   ov.innerHTML = ios
-    ? '<div class="fs-in"><div class="fs-t">Чтобы смотреть на весь экран</div>' +
-      '<div class="fs-s">нажмите «Поделиться» → «На экран Домой»<br>и откройте показ со значка</div>' +
-      '<div class="fs-b">Смотреть здесь</div></div>'
-    : '<div class="fs-in"><div class="fs-t">Коснитесь экрана</div>' +
-      '<div class="fs-s">показ откроется на весь экран</div></div>';
+    ? '<div class="fs-in"><div class="fs-t">Как открыть на весь экран</div>' +
+      '<ol class="fs-steps">' +
+      '<li>Нажмите в Safari значок «Поделиться» <svg class="fs-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7.5 7.5 12 3l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 10H6v10h12V10h-2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></li>' +
+      '<li>Выберите «На экран „Домой“» и нажмите «Добавить»</li>' +
+      '<li>Откройте презентацию с нового значка на экране телефона</li>' +
+      '</ol><div class="fs-b">Смотреть сейчас</div></div>'
+    : '<div class="fs-in"><div class="fs-t">Нажмите в любом месте</div>' +
+      '<div class="fs-s">презентация откроется на весь экран</div></div>';
   document.body.appendChild(ov);
   function go(e) {
     e.preventDefault(); e.stopPropagation();
@@ -431,6 +434,7 @@
     }
     ov.remove();
   }
-  ov.addEventListener('click', go, true);
-  ov.addEventListener('touchend', go, true);
+  var target = ios ? ov.querySelector('.fs-b') : ov;
+  target.addEventListener('click', go, true);
+  target.addEventListener('touchend', go, true);
 })();
