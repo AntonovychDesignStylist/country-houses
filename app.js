@@ -398,3 +398,39 @@
     window.addEventListener(ev, goFull, true);
   });
 })();
+
+/* Телефон: заставка «коснитесь — на весь экран». Android — полный экран и горизонталь,
+   iPhone (Safari не даёт сайту полный экран) — короткая подсказка «На экран Домой». */
+(function () {
+  var touch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+  var small = Math.min(screen.width, screen.height) < 900;
+  var standalone = window.matchMedia('(display-mode: fullscreen)').matches ||
+                   window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+  if (!touch || !small || standalone) return;
+  var el = document.documentElement;
+  var req = el.requestFullscreen || el.webkitRequestFullscreen;
+  var ios = !req || /iPhone|iPod/.test(navigator.userAgent);
+  var ov = document.createElement('div');
+  ov.id = 'fs-gate';
+  ov.innerHTML = ios
+    ? '<div class="fs-in"><div class="fs-t">Чтобы смотреть на весь экран</div>' +
+      '<div class="fs-s">нажмите «Поделиться» → «На экран Домой»<br>и откройте показ со значка</div>' +
+      '<div class="fs-b">Смотреть здесь</div></div>'
+    : '<div class="fs-in"><div class="fs-t">Коснитесь экрана</div>' +
+      '<div class="fs-s">показ откроется на весь экран</div></div>';
+  document.body.appendChild(ov);
+  function go(e) {
+    e.preventDefault(); e.stopPropagation();
+    if (!ios) {
+      try {
+        var p = req.call(el, { navigationUI: 'hide' });
+        if (p && p.then) p.then(function () {
+          try { screen.orientation.lock('landscape').catch(function () {}); } catch (x) {}
+        }).catch(function () {});
+      } catch (x) {}
+    }
+    ov.remove();
+  }
+  ov.addEventListener('click', go, true);
+  ov.addEventListener('touchend', go, true);
+})();

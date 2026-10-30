@@ -337,3 +337,11 @@ html,body{background:var(--bg)}
 /* заголовки разделов — мельче, тоньше, в одну строку */
 .text-slide .title{font-weight:300;font-size:clamp(14px,1.45vw,28px);letter-spacing:.32em;text-indent:.32em;white-space:nowrap}
 .cover-min .title{font-size:clamp(12px,1vw,17px);font-weight:400}
+/* заставка на телефоне */
+#fs-gate{position:fixed;inset:0;z-index:100;background:var(--bg);display:flex;align-items:center;justify-content:center;
+  padding:max(16px,env(safe-area-inset-left,0px));cursor:pointer;-webkit-tap-highlight-color:transparent}
+#fs-gate .fs-in{text-align:center;color:var(--white);font-family:var(--sans)}
+#fs-gate .fs-t{font-weight:400;font-size:13px;letter-spacing:.32em;text-indent:.32em;text-transform:uppercase}
+#fs-gate .fs-s{margin-top:1.2em;font-weight:300;font-size:12px;line-height:1.7;color:var(--grey)}
+#fs-gate .fs-b{margin-top:2em;display:inline-block;padding:10px 18px;border:1px solid var(--hair);font-size:11px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--white)}
